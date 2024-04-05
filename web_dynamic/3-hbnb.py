@@ -15,7 +15,7 @@ import uuid
 app = Flask(__name__)
 
 
-@app.route('/0-hbnb', strict_slashes=False)
+@app.route('/3-hbnb', strict_slashes=False)
 def hbnb_filters():
     """ Displays main HBnB html page """
     states = storage.all(State).values()
@@ -30,7 +30,7 @@ def hbnb_filters():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
     cache_id = uuid.uuid4()
-    return render_template('0-hbnb.html',
+    return render_template('3-hbnb.html',
                            states=list_states,
                            amenities=amenities,
                            places=places,

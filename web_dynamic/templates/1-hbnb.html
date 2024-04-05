@@ -3,13 +3,15 @@
 	<head>
 		<title>AirBnB clone</title>
 
-		<link rel="shortcut icon" href="images/icon.png" >
+		<link rel="shortcut icon" href="images/icon.png?{{ cache_id }}"/>
 
-		<link rel="stylesheet" href="styles/4-common.css"/>
-		<link rel="stylesheet" href="styles/3-header.css"/>
-		<link rel="stylesheet" href="styles/3-footer.css"/>
-		<link rel="stylesheet" href="styles/6-filters.css"/>
-		<link rel="stylesheet" href="styles/8-places.css"/>
+		<link rel="stylesheet" href="styles/4-common.css?{{ cache_id }}"/>
+		<link rel="stylesheet" href="styles/3-header.css?{{ cache_id }}"/>
+		<link rel="stylesheet" href="styles/3-footer.css?{{ cache_id }}"/>
+		<link rel="stylesheet" href="styles/6-filters.css?{{ cache_id }}"/>
+		<link rel="stylesheet" href="styles/8-places.css?{{ cache_id }}"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="../static/scripts/1-hbnb.js?{{ cache_id }}"></script>
 	</head>
     <body>
 		<header>
@@ -22,11 +24,11 @@
 					<h3>States</h3>
 					<h4>&nbsp</h4>
 					<ul class="popover">
-						{% for state in states|sort(attribute='name') %}
+						{% for state in states %}
 						<li>
-							<h2>{{ state.name }}:</h2>
+							<h2>{{ state[0].name }}:</h2>
 							<ul>
-								{% for city in state.cities|sort(attribute='name') %}
+								{% for city in state[1] %}
 								<li>{{ city.name }}</li>
 								{% endfor %}
 							</ul>
@@ -38,8 +40,8 @@
 					<h3>Amenities</h3>
 					<h4>&nbsp</h4>
 					<ul class="popover">
-						{% for amenity in amenities|sort(attribute='name') %}
-						<li>{{ amenity.name }}</li>
+						{% for amenity in amenities %}
+						<li><input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{ amenity.name}}</li>
 						{% endfor %}
 					</ul>
 				</div>

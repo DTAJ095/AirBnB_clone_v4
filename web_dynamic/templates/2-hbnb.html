@@ -50,7 +50,7 @@
 			</section>
 			<section class="places">
 				<h1>Places</h1>
-				{% for place in places|sort(attribute='name') %}
+				{% for place in places %}
 				<article>
 					<div class="headline">
 						<h2>{{ place.name }}</h2>

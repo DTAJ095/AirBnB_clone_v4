@@ -1,28 +1,68 @@
 $(document).ready(function () {
-    let Ids = []
-    $('input[type=checkbox]').click(function () {
+    let Amenities = [];
+    let States = [];
+    let Cities = [];
+
+    $('.amenities .popover input[type=checkbox]').click(function () {
         const listName = [];
-        Ids = [];
-        $('input[type=checkbox]:checked').each(function () {
-            listName.push($(this).attr('data-name'));
-            Ids.push($(this).attr('data-id'));
-        })
+        Amenities = [];
+
+        $('.amenities .popover input[type=checkbox]').each(function () {
+            listName.unshift($(this).attr('data-name'));
+            Amenities.unshift($(this).attr('data-id'));
+        });
         if (listName.length === 0) {
             $('.amenities h4').html('&nbsp;');
         } else {
             $('.amenities h4').text(listName.join(', '));
         }
-        console.log(Ids)
+        console.log(Amenities);
+    });
+
+    $('.locations .popover h2 input[type=checkbox]').click(function () {
+        const listName = [];
+        States = [];
+
+        $('.locations .popover h2 input[type=checkbox]').each(function () {
+            listName.unshift($(this).attr('data-name'));
+            States.unshift($(this).attr('data-id'));
+        });
+        if (listName.length === 0) {
+            $('.locations h6.States').html('&nbsp;');
+        } else {
+            $('.locations h6.States').text(listName.join(', '));
+        }
+        console.log(States);
+    });
+
+    $('locations .popover ul ul input[type=checkbox]').click(function () {
+        const listName = [];
+        Cities = [];
+
+        $('.locations .popover ul ul input[type=checkbox]').each(function () {
+            listName.unshift($(this).attr('data-name'));
+            Cities.unshift($(this).attr('data-id'));
+        });
+        if (listName === 0) {
+            $('.locations h6.Cities').html('&nbsp;');
+        } else {
+            $('.locations h6.Cities').text(listName.join(', '));
+        }
+        console.log(Cities);
     });
 
     $('.filters button').click(function (event) {
         event.preventDefault();
         $('.places').text('');
+
         const obj = {};
-        obj.amenities = Ids;
+        obj.amenities = Amenities;
+        obj.states = States;
+        obj.cities = Cities;
+
         listPlaces(JSON.stringify(obj));
     });
-
+    
     $.ajax({
         url: 'http://0.0.0.0:5001/api/v1/status/',
         type: 'GET',

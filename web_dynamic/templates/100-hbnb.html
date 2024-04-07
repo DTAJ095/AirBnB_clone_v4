@@ -25,39 +25,46 @@
     <div class="container">
       <section class="filters">
 	<div class="locations">
-          <h3>States</h3>
-	  <h4>&nbsp;</h4>
-          <ul class="popover">
-	    {% for state in states.values()|sort(attribute='name') %}
+    <h3>States</h3>
+    <div class='show-text'>
+      <h6 class='States'>&nbsp;</h6>
+      <h6 class='Cities'></h6>
+    </div>
+    <div class="popover">
+      <ul>
+	    {% for state in states.values() %}
             <li>
-	      <input type="checkbox" data-id="{{ state.id }}" data-name="{{ state.name }}"><h2>{{ state.name }}</h2>
+	      <input type="checkbox" data-id="{{ state[0].id }}" data-name="{{ state[0].name }}"><h2>{{ state[0].name }}</h2>
               <ul>
-	      {% for city in state.cities|sort(attribute='name') %}
+	      {% for city in state[1] %}
                 <li><input type="checkbox" data-id="{{ city.id }}" data-name="{{ city.name }}">{{ city.name }}</li>
 	      {% endfor %}
               </ul>
             </li>
 	    {% endfor %}
-	  </ul>
+          </ul>
+	  </div>
 	</div>
 	<div class="amenities">
           <h3>Amenities</h3>
           <h4>&nbsp;</h4>
-          <ul class="popover">
-	    {% for amty in amenities.values() %}
+          <div class="popover">
+            <ul>
+	    {% for amty in amenities %}
 	    <li>
 	      <input type="checkbox" data-id="{{ amty.id }}" data-name="{{ amty.name }}">{{ amty.name }}
 	    </li>
 	    {% endfor %}
-          </ul>
+    </ul>
+  </div>
 	</div>
-	<button>
+	<button type="button">
 	  Search
 	</button>
       </section>
-      <section class="places">
+      <div class="placesh1">
 	<h1>Places</h1>
-      </section>
+      </div>
     </div>
     <footer>
       <p>

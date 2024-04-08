@@ -141,6 +141,7 @@ function showReviews (obj) {
         return;
     }
     if (obj.textContent === 'Show') {
+        obj.textContent = 'Hide';
         $.get(`http://0.0.0.0:5001/api/v1/places/${obj.id}/reviews`, (data, textStatus) => {
             if (textStatus === 'success') {
                 $(`#${obj.id}n`).html(data.length + ' Reviews');
